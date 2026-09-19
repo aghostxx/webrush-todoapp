@@ -20,8 +20,8 @@ export default function Home() {
   }
 
   return (
-    <div className="flex items-center min-h-max h-[70%] justify-center bg-background font-sans">
-      <main className="container mx-auto flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-8 mt-20 space-y-8 bg-card border rounded-xl">
+    <div className="flex items-center min-h-max justify-center bg-background font-sans">
+      <main className="container mx-auto flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-8 mt-20 space-y-8">
           <h1 className="text-3xl font-bold text-center">Welcome to To-Do App</h1>
           <div className="optionsDiv flex items-center justify-center gap-10 w-full mt-10">
             <Button variant="default" className="p-5 cursor-pointer" onClick={handleViewTodos}>View To-Do(s)</Button>
