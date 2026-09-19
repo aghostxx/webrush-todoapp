@@ -6,14 +6,14 @@ import { useTodos } from "@/app/context/TodoContext";
 import { TodoProps } from "../types/todoProps";
 import { useRouter } from "next/navigation";
 import {Button} from "@/components/ui/button";
-import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 type StatusFilter = "all" | "active" | "completed";
 type PriorityFilter = "all" | TodoProps["priority"];
 
 export default function ViewTodoPage() {
   const router = useRouter()
-  const isDesktop = useMediaQuery("(min-width: 768px)", false);
+  const isMobile = useIsMobile();
 
   const { todos } = useTodos();
 
@@ -67,7 +67,7 @@ export default function ViewTodoPage() {
         </div>
         <div className="rightDiv">
             <Button variant="default" onClick={() => router.push("/addTodo")} className='py-1.5 px-2.5 md:py-3 md:px-5 cursor-pointer'>
-              {isDesktop ? "+ Add To-Do" : '+'}
+              {isMobile ? '+' : "+ Add To-Do"}
             </Button>
         </div>
         
