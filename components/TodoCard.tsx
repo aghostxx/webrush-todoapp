@@ -119,9 +119,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
           >
             <Check className="mr-1 h-4 w-4" />
 
-            {todo.status === "completed"
-              ? "Mark active"
-              : "Complete"}
+            {todo.status === "completed" ? "Mark active" : "Complete"}
           </Button>
 
           {/* EDIT */}
@@ -137,37 +135,29 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
 
           {/* DELETE */}
           <AlertDialog>
-            <AlertDialogTrigger>
-              <Button
-                type="button"
-                size="sm"
-                variant="destructive"
-              >
-                <Trash2 className="mr-1 h-4 w-4" />
-                Delete
-              </Button>
-            </AlertDialogTrigger>
+            <AlertDialogTrigger
+              render={
+                <Button type="button" size="sm" variant="destructive">
+                  <Trash2 className="mr-1 h-4 w-4" />
+                  Delete
+                </Button>
+              }
+            />
 
             <AlertDialogContent className="w-[calc(100%-2rem)] max-w-md">
               <AlertDialogHeader>
-                <AlertDialogTitle>
-                  Delete this task?
-                </AlertDialogTitle>
+                <AlertDialogTitle>Delete this task?</AlertDialogTitle>
 
                 <AlertDialogDescription>
-                  This action cannot be undone. The task will be
-                  permanently removed from your list.
+                  This action cannot be undone. The task will be permanently
+                  removed from your list.
                 </AlertDialogDescription>
               </AlertDialogHeader>
 
               <AlertDialogFooter>
-                <AlertDialogCancel>
-                  Cancel
-                </AlertDialogCancel>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
 
-                <AlertDialogAction
-                  onClick={() => deleteTodo(todo.id)}
-                >
+                <AlertDialogAction onClick={() => deleteTodo(todo.id)}>
                   Delete
                 </AlertDialogAction>
               </AlertDialogFooter>
@@ -177,10 +167,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
       </article>
 
       {/* EDIT MODAL */}
-      <Dialog
-        open={isEditOpen}
-        onOpenChange={setIsEditOpen}
-      >
+      <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
         <DialogContent className="w-[calc(100%-2rem)] max-w-lg">
           <DialogHeader>
             <DialogTitle>Edit To-Do</DialogTitle>
@@ -190,10 +177,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
             </DialogDescription>
           </DialogHeader>
 
-          <form
-            onSubmit={handleEditSubmit}
-            className="space-y-4"
-          >
+          <form onSubmit={handleEditSubmit} className="space-y-4">
             {/* TITLE */}
             <div className="space-y-2">
               <label
@@ -207,9 +191,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
                 id={`edit-title-${todo.id}`}
                 value={editTitle}
                 maxLength={30}
-                onChange={(e) =>
-                  setEditTitle(e.target.value)
-                }
+                onChange={(e) => setEditTitle(e.target.value)}
                 className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
@@ -228,9 +210,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
                 value={editDescription}
                 maxLength={100}
                 rows={4}
-                onChange={(e) =>
-                  setEditDescription(e.target.value)
-                }
+                onChange={(e) => setEditDescription(e.target.value)}
                 className="w-full resize-none rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
               />
             </div>
@@ -248,9 +228,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
                 id={`edit-priority-${todo.id}`}
                 value={editPriority}
                 onChange={(e) =>
-                  setEditPriority(
-                    e.target.value as TodoProps["priority"]
-                  )
+                  setEditPriority(e.target.value as TodoProps["priority"])
                 }
                 className="w-full rounded-md border border-input bg-background px-3 py-2 outline-none focus:ring-2 focus:ring-ring"
               >
@@ -270,9 +248,7 @@ const TodoCard = ({ todo }: { todo: TodoProps }) => {
                 Cancel
               </Button>
 
-              <Button type="submit">
-                Save changes
-              </Button>
+              <Button type="submit">Save changes</Button>
             </DialogFooter>
           </form>
         </DialogContent>

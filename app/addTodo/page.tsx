@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { useTodos } from "@/app/context/TodoContext";
 import { TodoProps } from "../types/todoProps";
+import { Tooltip, TooltipContent, TooltipTrigger, } from "@/components/ui/tooltip";
 
 export default function AddTodoPage() {
   const router = useRouter();
@@ -33,7 +34,7 @@ export default function AddTodoPage() {
 
   return (
     <main className="mx-auto flex min-h-full w-full max-w-3xl items-center justify-center px-4 py-8 sm:px-6 lg:px-8">
-      <section className="w-full max-w-lg rounded-xl border bg-card p-4 shadow-sm sm:p-6">
+      <section className="w-full max-w-lg rounded-xl border bg-card p-4 sm:p-6 shadow-[0_6px_10px_rgba(0,0,0,0.5)]">
         <h1 className="mb-6 text-2xl font-bold sm:text-3xl">
           Add a New To-Do
         </h1>
@@ -41,7 +42,16 @@ export default function AddTodoPage() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="title" className="text-sm font-medium">
-              Title <span className="text-destructive">*</span>
+              Title <span className="text-destructive">
+                <Tooltip>
+                  <TooltipTrigger>
+                    <span>*</span>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>Title is required</p>
+                  </TooltipContent>
+                </Tooltip>
+              </span> <span className="text-xs text-muted-foreground ml-1">(Maximum 30 characters)</span>
             </label>
             <input
               id="title"
@@ -56,7 +66,7 @@ export default function AddTodoPage() {
 
           <div className="space-y-2">
             <label htmlFor="description" className="text-sm font-medium">
-              Description
+              Description <span className="text-xs text-muted-foreground ml-1">Optional (Maximum 100 characters)</span>
             </label>
             <textarea
               id="description"

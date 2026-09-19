@@ -4,11 +4,17 @@ import { useMemo, useState } from "react";
 import TodoCard from "@/components/TodoCard";
 import { useTodos } from "@/app/context/TodoContext";
 import { TodoProps } from "../types/todoProps";
+import { useRouter } from "next/navigation";
+import {Button} from "@/components/ui/button";
+import { useMediaQuery } from "@base-ui/react/unstable-use-media-query";
 
 type StatusFilter = "all" | "active" | "completed";
 type PriorityFilter = "all" | TodoProps["priority"];
 
 export default function ViewTodoPage() {
+  const router = useRouter()
+  const isDesktop = useMediaQuery("(min-width: 768px)", false);
+
   const { todos } = useTodos();
 
   const [search, setSearch] = useState("");
@@ -51,12 +57,20 @@ export default function ViewTodoPage() {
   }, [todos]);
 
   return (
-    <main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-      <div className="mb-6">
-        <h1 className="text-2xl font-bold sm:text-3xl">Your To-Do List</h1>
-        <p className="mt-1 text-sm text-muted-foreground">
-          Manage, search, and filter your tasks.
-        </p>
+    <main className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 mb-12">
+      <div className="mb-6 flex items-center justify-between">
+        <div className="leftDiv">
+            <h1 className="text-2xl font-bold sm:text-3xl">Your To-Do List</h1>
+            <p className="mt-1 text-sm text-muted-foreground">
+            Manage, search, and filter your tasks.
+            </p>
+        </div>
+        <div className="rightDiv">
+            <Button variant="default" onClick={() => router.push("/addTodo")} className='py-1.5 px-2.5 md:py-3 md:px-5 cursor-pointer'>
+              {isDesktop ? "+ Add To-Do" : '+'}
+            </Button>
+        </div>
+        
       </div>
 
       <section className="mb-6 grid grid-cols-1 gap-3 sm:grid-cols-3">
